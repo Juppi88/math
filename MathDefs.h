@@ -13,6 +13,9 @@
 #ifndef __MYLLY_MATH_DEFS_H
 #define __MYLLY_MATH_DEFS_H
 
+#define	PI					3.1415926535f
+#define	MAX_FLOAT_ERROR		0.000001f
+
 // Math types
 #include "Math/Colour.h"
 #include "Math/Matrix4.h"
