@@ -12,7 +12,8 @@
 #include "Math/Vector3.h"
 #include <math.h>
 
-#define VECTOR3_EPSILON 0.001f
+const float VECTOR3_EPSILON	= 0.001f;
+const float VECTOR3_ERROR	= 0.000001f;
 
 void vector3_add( vector3_t* result, const vector3_t* v1, const vector3_t* v2 )
 {
@@ -105,6 +106,13 @@ float vector3_distance_sq( const vector3_t* v1, const vector3_t* v2 )
 	return x*x + y*y + z*z;
 }
 
+void vector3_difference( vector3_t* result, const vector3_t* v1, const vector3_t* v2 )
+{
+	result->x = v1->x > v2->x ? v1->x - v2->x : v2->x - v1->x;
+	result->y = v1->y > v2->y ? v1->y - v2->y : v2->y - v1->y;
+	result->z = v1->z > v2->z ? v1->z - v2->z : v2->z - v1->z;
+}
+
 void vector3_normalize( vector3_t* v )
 {
 	float factor = sqrtf( v->x*v->x + v->y*v->y + v->z*v->z );
@@ -121,4 +129,14 @@ void vector3_lerp( vector3_t* result, const vector3_t* v1, const vector3_t* v2, 
 	result->x = v1->x + ( v2->x - v1->x ) * t;
 	result->y = v1->y + ( v2->y - v1->y ) * t;
 	result->z = v1->z + ( v2->z - v1->z ) * t;
+}
+
+bool vector3_is_zero( const vector3_t* v )
+{
+	if ( fabsf( v->x ) < VECTOR3_ERROR &&
+		 fabsf( v->y ) < VECTOR3_ERROR &&
+		 fabsf( v->z ) < VECTOR3_ERROR )
+		return true;
+
+	return false;
 }
