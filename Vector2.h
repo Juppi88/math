@@ -15,6 +15,24 @@
 
 #include "stdtypes.h"
 
+#ifdef __cplusplus
+
+// A vector implementation for C++
+union vector2_t
+{
+	vector2_t() { x = 0.0f; y = 0.0f; }
+	vector2_t( float X, float Y ) { x = X; y = Y; }
+
+	struct {
+		float x;
+		float y;
+	};
+	float coords[2];
+};
+
+#else
+
+// Pure C version of the struct
 typedef union
 {
 	struct {
@@ -23,6 +41,10 @@ typedef union
 	};
 	float coords[2];
 } vector2_t;
+
+#endif
+
+typedef vector2_t Vector2;
 
 __BEGIN_DECLS
 
