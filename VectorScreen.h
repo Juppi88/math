@@ -15,12 +15,34 @@
 
 #include "stdtypes.h"
 
+#ifdef __cplusplus
+
+// A vector implementation for C++
+union vectorscreen_t
+{
+	vectorscreen_t() { x = 0; y = 0; }
+	vectorscreen_t( int16 X, int16 Y ) { x = X; y = Y; }
+
+	struct { int16 x, y; };
+	struct { uint16 w, h; };
+	struct { uint16 ux, uy; };
+	uint16 coords[2];
+};
+
+#else
+
+// Pure C version of the struct
 typedef union
 {
-	struct { uint16 x, y; };
+	struct { int16 x, y; };
 	struct { uint16 w, h; };
-	uint16 coords[2];
+	struct { uint16 ux, uy; };
+	float coords[2];
 } vectorscreen_t;
+
+#endif
+
+typedef vectorscreen_t VectorScreen;
 
 __BEGIN_DECLS
 
