@@ -31,10 +31,6 @@ union rectangle_t
 	struct {
 		uint16 ux, uy, uw, uh;
 	};
-	struct {
-		vectorscreen_t pos;
-		vectorscreen_t size;
-	};
 };
 
 #else
