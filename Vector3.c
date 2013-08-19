@@ -74,6 +74,16 @@ float vector3_angle( const vector3_t* v1, const vector3_t* v2 )
 	return acosf( vector3_dot( v1, v2 ) / vector3_length( v1 ) / vector3_length( v2 ) );
 }
 
+bool vector3_is_zero( const vector3_t* v )
+{
+	if ( fabsf( v->x ) < VECTOR3_ERROR &&
+		fabsf( v->y ) < VECTOR3_ERROR &&
+		fabsf( v->z ) < VECTOR3_ERROR )
+		return true;
+
+	return false;
+}
+
 float vector3_length( const vector3_t* v )
 {
 	return sqrtf( v->x*v->x + v->y*v->y + v->z*v->z );
@@ -131,12 +141,13 @@ void vector3_lerp( vector3_t* result, const vector3_t* v1, const vector3_t* v2, 
 	result->z = v1->z + ( v2->z - v1->z ) * t;
 }
 
-bool vector3_is_zero( const vector3_t* v )
+void vector3_transform_coord( vector3_t* result, const vector3_t* point, const matrix4_t* mat )
 {
-	if ( fabsf( v->x ) < VECTOR3_ERROR &&
-		 fabsf( v->y ) < VECTOR3_ERROR &&
-		 fabsf( v->z ) < VECTOR3_ERROR )
-		return true;
+	float norm;
 
-	return false;
+	norm = mat->_14 * point->x + mat->_24 * point->y + mat->_34 * point->z + mat->_44;
+
+	result->x = ( mat->_11 * point->x + mat->_21 * point->y + mat->_31 * point->z + mat->_41 ) / norm;
+	result->x = ( mat->_12 * point->x + mat->_22 * point->y + mat->_32 * point->z + mat->_42 ) / norm;
+	result->x = ( mat->_13 * point->x + mat->_23 * point->y + mat->_33 * point->z + mat->_43 ) / norm;
 }
