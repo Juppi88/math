@@ -37,7 +37,7 @@ typedef union
 	struct { int16 x, y; };
 	struct { uint16 w, h; };
 	struct { uint16 ux, uy; };
-	float coords[2];
+	uint16 coords[2];
 } vectorscreen_t;
 
 #endif

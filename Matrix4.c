@@ -159,12 +159,12 @@ void matrix4_transpose( matrix4_t* result, const matrix4_t* mat )
 	}
 }
 
-void matrix4_inverse( matrix4_t* result, const matrix4_t* mat )
+float matrix4_inverse( matrix4_t* result, const matrix4_t* mat )
 {
 	float det, retn, t[3], v[16];
 	uint32 i, j;
 
-	if ( result == NULL || mat == NULL ) return;
+	if ( result == NULL || mat == NULL ) return 0;
 
 	// Calculate the determinant
 	t[0] = mat->_33 * mat->_44 - mat->_34 * mat->_43;

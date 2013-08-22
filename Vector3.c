@@ -148,6 +148,6 @@ void vector3_transform_coord( vector3_t* result, const vector3_t* point, const m
 	norm = mat->_14 * point->x + mat->_24 * point->y + mat->_34 * point->z + mat->_44;
 
 	result->x = ( mat->_11 * point->x + mat->_21 * point->y + mat->_31 * point->z + mat->_41 ) / norm;
-	result->x = ( mat->_12 * point->x + mat->_22 * point->y + mat->_32 * point->z + mat->_42 ) / norm;
-	result->x = ( mat->_13 * point->x + mat->_23 * point->y + mat->_33 * point->z + mat->_43 ) / norm;
+	result->y = ( mat->_12 * point->x + mat->_22 * point->y + mat->_32 * point->z + mat->_42 ) / norm;
+	result->z = ( mat->_13 * point->x + mat->_23 * point->y + mat->_33 * point->z + mat->_43 ) / norm;
 }
