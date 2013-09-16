@@ -11,6 +11,7 @@
 
 #include "Math/Matrix4.h"
 #include "Math/MathUtils.h"
+#include <math.h>
 
 #define SM (8 / sizeof(float))
 #define MATRIX4_EPSILON 0.0001f
@@ -278,7 +279,8 @@ void matrix4_rotation_x( matrix4_t* mat, float rad )
 
 	mat->_11 = mat->_44 = 1.0f;
 
-	sincosf( rad, &fsin, &fcos );
+	fsin = sinf( rad );
+	fcos = cosf( rad );
 
 	mat->_22 = fcos; mat->_23 = fsin;
 	mat->_32 = -fsin; mat->_33 = fcos;
@@ -297,7 +299,8 @@ void matrix4_rotation_y( matrix4_t* mat, float rad )
 
 	mat->_22 = mat->_44 = 1.0f;
 
-	sincosf( rad, &fsin, &fcos );
+	fsin = sinf( rad );
+	fcos = cosf( rad );
 
 	mat->_11 = fcos; mat->_13 = -fsin;
 	mat->_31 = fsin; mat->_33 = fcos;
@@ -316,7 +319,8 @@ void matrix4_rotation_z( matrix4_t* mat, float rad )
 
 	mat->_33 = mat->_44 = 1.0f;
 
-	sincosf( rad, &fsin, &fcos );
+	fsin = sinf( rad );
+	fcos = cosf( rad );
 
 	mat->_11 = fcos; mat->_12 = fsin;
 	mat->_21 = -fsin; mat->_33 = fcos;

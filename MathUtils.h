@@ -31,16 +31,4 @@ static MYLLY_INLINE float math_clampf( float value, float lower, float upper )
 	return value < lower ? lower : value;
 }
 
-#if defined _WIN32
-
-// VS implementation for sincosf that is missing from earlier versions of Visual C++
-#include <math.h>
-
-static MYLLY_INLINE void sincosf( float angle, float* fsin, float *fcos )
-{
-	*fsin = sinf( angle );
-	*fcos = cosf( angle );
-}
-#endif
-
 #endif /* __MYLLY_MATH_UTILS_H */
