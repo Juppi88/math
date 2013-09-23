@@ -73,7 +73,7 @@ void colour_invert( colour_t* result, const colour_t* c )
 	result->a = 255 - c->a;
 }
 
-void colour_invert_noalpha( colour_t* result, const colour_t* c )
+void colour_invert_no_alpha( colour_t* result, const colour_t* c )
 {
 	result->r = 255 - c->r;
 	result->g = 255 - c->g;
